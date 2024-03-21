@@ -1,0 +1,30 @@
+version: '3.5'
+
+services:
+
+  backend:
+    build: .
+    container_name: backend-container
+    ports:
+      - 3001:3001
+    volumes:
+      - ./src:/app-backend/src
+    environment:
+      - DB_USER=root
+      - DB_PASSWORD=docker
+      - DB_NAME=app-disk-agua
+      - DB_HOST=db
+    depends_on:
+      - db
+    restart: always
+
+  db:
+    image: postgres:alpine
+    container_name: db-container
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_USER=root
+      - POSTGRES_DB=db-postgres
+    restart: always
