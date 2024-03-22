@@ -5,15 +5,12 @@
   "repository": "git@github.com:carolhn/app-disk-agua.git",
   "author": "Caroline Nunes <nunescaroline905@gmail.com>",
   "license": "MIT",
-  "scripts": {
-    "dev": "ts-node-dev . --inspect --transpile-only --ignore-watch node_modules"
-  },
+
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.0",
-    "sequelize": "^6.37.1",
-    "ts-node": "^10.9.2"
+    "sequelize": "^6.37.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
@@ -24,8 +21,7 @@
     "@typescript-eslint/parser": "^7.3.1",
     "eslint": "^8.57.0",
     "sequelize-cli": "^6.6.2",
-    "ts-node-dev": "^2.0.0",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.4.2"
-  }
+}
 }
