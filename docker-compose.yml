@@ -8,12 +8,12 @@ services:
     ports:
       - 3001:3001
     volumes:
-      - ./src:/app-backend/src
+      - .:/app-backend
     environment:
-      - DB_USER=root
-      - DB_PASSWORD=docker
-      - DB_NAME=app-disk-agua
-      - DB_HOST=db
+      - PG_USER=${PG_USER}
+      - PG_PASSWORD=${PG_PASSWORD}
+      - PG_DATABASE=${PG_DATABASE}
+      - PG_HOST=${PG_HOST}
     depends_on:
       - db
     restart: always
@@ -24,7 +24,7 @@ services:
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_PASSWORD=docker
-      - POSTGRES_USER=root
-      - POSTGRES_DB=db-postgres
+      - POSTGRES_PASSWORD=${PG_PASSWORD}
+      - POSTGRES_USER=${PG_USER}
+      - POSTGRES_DB=${PG_DATABASE}
     restart: always
