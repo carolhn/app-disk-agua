@@ -1,0 +1,30 @@
+version: '3.5'
+
+services:
+
+  backend:
+    build: .
+    container_name: backend-container
+    ports:
+      - 3001:3001
+    volumes:
+      - .:/app-backend
+    environment:
+      - PG_USER=${PG_USER}
+      - PG_PASSWORD=${PG_PASSWORD}
+      - PG_DATABASE=${PG_DATABASE}
+      - PG_HOST=${PG_HOST}
+    depends_on:
+      - db
+    restart: always
+
+  db:
+    image: postgres:alpine
+    container_name: db-container
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=${PG_PASSWORD}
+      - POSTGRES_USER=${PG_USER}
+      - POSTGRES_DB=${PG_DATABASE}
+    restart: always
