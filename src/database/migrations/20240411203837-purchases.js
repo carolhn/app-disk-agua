@@ -18,10 +18,10 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false
       },
-      totalPrice: {
+      total_price: {
         type: Sequelize.DECIMAL(10, 2),
         allowNull: false,
-        field: 'total_price'
+        field: 'totalPrice'
       },
       createdAt: {
         type: Sequelize.DATE,
