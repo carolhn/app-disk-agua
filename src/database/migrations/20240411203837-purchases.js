@@ -21,7 +21,6 @@ module.exports = {
       total_price: {
         type: Sequelize.DECIMAL(10, 2),
         allowNull: false,
-        field: 'totalPrice'
       },
       createdAt: {
         type: Sequelize.DATE,

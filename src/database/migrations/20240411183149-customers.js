@@ -21,12 +21,10 @@ module.exports = {
       type_document: {
         type: Sequelize.STRING,
         allowNull: false,
-        field: 'typeDocument'
       },
       CPF_CNPJ: {
         type: Sequelize.STRING,
         allowNull: false,
-        field: 'cpfCnpj'
       },
       address: {
         type: Sequelize.STRING,

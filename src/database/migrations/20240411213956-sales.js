@@ -13,22 +13,18 @@ module.exports = {
       date_sales: {
         type: Sequelize.DATE,
         allowNull: false,
-        field: 'dateSales'
       },
       quantity_sales: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        field: 'quantitySales'
       },
       unit_price_sales: {
         type: Sequelize.DECIMAL(10, 2),
         allowNull: false,
-        field: 'unitPriceSales'
       },
       total_price_sales: {
         type: Sequelize.DECIMAL(10, 2),
         allowNull: false,
-        field: 'totalPriceSales'
       },
       product_id: {
         type: Sequelize.INTEGER,
