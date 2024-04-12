@@ -28,10 +28,10 @@ module.exports = {
      type: Sequelize.INTEGER,
      allowNull: false
     },
-    unitPrice: {
+    unit_price: {
      type: Sequelize.DECIMAL(10, 2),
      allowNull: false,
-     field: 'unit_price'
+     field: 'unitPrice'
     },
     createdAt: {
      type: Sequelize.DATE,

@@ -18,15 +18,15 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      typeDocument: {
+      type_document: {
         type: Sequelize.STRING,
         allowNull: false,
-        field: 'type_document'
+        field: 'typeDocument'
       },
-      cpfCnpj: {
+      CPF_CNPJ: {
         type: Sequelize.STRING,
         allowNull: false,
-        field: 'CPF_CNPJ'
+        field: 'cpfCnpj'
       },
       address: {
         type: Sequelize.STRING,
