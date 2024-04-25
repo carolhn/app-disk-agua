@@ -10,41 +10,28 @@ module.exports = {
         autoIncrement: true,
         allowNull: false
       },
-      date_sales: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
-      quantity_sales: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      unit_price_sales: {
-        type: Sequelize.DECIMAL(10, 2),
-        allowNull: false,
-      },
-      total_price_sales: {
-        type: Sequelize.DECIMAL(10, 2),
-        allowNull: false,
-      },
-      product_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'products',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
-      },
       customer_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        foreingKey: true,
         references: {
           model: 'customers',
           key: 'id'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
+      },
+      date_sales: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      quantity: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
+      total_price_sales: {
+        type: Sequelize.DECIMAL(10, 2),
+        allowNull: false,
       },
     });
   },
