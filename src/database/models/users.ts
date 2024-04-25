@@ -1,11 +1,11 @@
-import sequelize, { Model } from 'sequelize'
-import db from '.'
+import sequelize, { Model } from 'sequelize';
+import db from '.';
 
 class Users extends Model {
-  declare id: number
-  declare name: string
-  declare email: string
-  declare password: string
+  declare id: Number;
+  declare name: String;
+  declare email: String;
+  declare password: String;
 }
 
 Users.init(
@@ -14,6 +14,7 @@ Users.init(
       type: sequelize.INTEGER.UNSIGNED,
       autoIncrement: true,
       primaryKey: true,
+      allowNull: false,
     },
     name: {
       type: sequelize.STRING(128),
