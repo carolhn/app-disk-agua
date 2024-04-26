@@ -2,12 +2,12 @@ import sequelize, { Model } from 'sequelize'
 import db from '.'
 
 class Customers extends Model {
-  declare id: number
-  declare name: string
-  declare phone: string
-  declare typeDocument: string
-  declare cpfCnpj: string
-  declare address: string
+  declare id: Number
+  declare name: String
+  declare phone: String
+  declare typyDocument: String
+  declare cpfCnpj: String
+  declare address: String
 }
 
 Customers.init(
@@ -25,7 +25,7 @@ Customers.init(
       type: sequelize.STRING(128),
       allowNull: false,
     },
-    typeDocument: {
+    typyDocument: {
       type: sequelize.STRING(128),
       allowNull: false,
     },
