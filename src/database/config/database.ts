@@ -6,7 +6,7 @@ const { PG_USER, PG_PASSWORD, PG_DATABASE, PG_HOST, PG_PORT } = process.env;
 const config: Options = {
   username: PG_USER || 'root',
   password: PG_PASSWORD || 'docker',
-  database: PG_DATABASE || 'app-disk-agua',
+  database: PG_DATABASE || 'water-delivery',
   host: PG_HOST || 'db',
   port: Number(PG_PORT),
   dialect: 'postgres',
