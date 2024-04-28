@@ -33,10 +33,15 @@ export class ProductService {
     const productId = await this.productById(id);
 
     const productExists = await this.findByName(name);
-    if (productExists && productExists.id !== id) {
+    if (productExists && productExists.name !== name) {
       throw new Error('Product already exists');
     }
 
     return await productId!.update({ name, description, image });
+  }
+
+  async deleteProduct({ id }: productType): Promise<void> {
+    const productId = await this.productById(id);
+    await productId?.destroy();
   }
 }
