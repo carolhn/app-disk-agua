@@ -1,18 +1,42 @@
-import { userType } from 'src/api/types/products';
+import { productType } from 'src/api/types/products';
 import Products from 'src/database/models/products';
 
 export class ProductService {
 
-  async findByName(name: string) {
+  async listAllProducts(): Promise<Products[]> {
+    return await Products.findAll();
+  }
+
+  async findByName(name: string): Promise<Products | null> {
     return await Products.findOne({ where: { name } });
   }
 
-  async createProduct({ name, description, image }: userType) {
+  async createProduct({ name, description, image }: productType): Promise<Products> {
     const productsExists = await this.findByName(name);
     if (productsExists) {
       throw new Error('Product already exists');
     }
 
     return await Products.create({ name, description, image });
+  }
+
+  async productById(id: number): Promise<Products | undefined> {
+    const product = await Products.findByPk(id);
+    if (!product) {
+      throw new Error('Product not found');
+    }
+
+    return product;
+  }
+
+  async updateProduct({ id, name, description, image}: productType): Promise<Products> {
+    const productId = await this.productById(id);
+
+    const productExists = await this.findByName(name);
+    if (productExists && productExists.id !== id) {
+      throw new Error('Product already exists');
+    }
+
+    return await productId!.update({ name, description, image });
   }
 }
