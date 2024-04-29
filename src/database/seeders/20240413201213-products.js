@@ -39,15 +39,15 @@ module.exports = {
         product_name: 'AGUA 20 LITROS',
         description: '1 UNIDADE',
       },
+      {
+        id: 1010,
+        product_name: 'GARRAFÃO 20 LITROS',
+        description: '',
+      },
     ], {});
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    await queryInterface.bulkDelete('products', null, {});
   }
 };

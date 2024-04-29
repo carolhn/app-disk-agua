@@ -93,7 +93,9 @@
   "settings": {
     "import/resolver": {
       "typescript": {
-        "paths": ["src"]
+        "paths": [
+          "src"
+        ]
       }
     }
   }
