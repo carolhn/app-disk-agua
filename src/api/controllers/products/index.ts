@@ -24,4 +24,16 @@ export class ProductsController {
     }
   }
 
+  async createProduct(req: Request, res: Response): Promise<Response> {
+    const { name, description, image } = req.body;
+
+    try {
+      const products = new ProductService();
+      const createProduct = await products.createProduct({ name, description, image });
+      return res.status(201).json(createProduct);
+    } catch (error) {
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+  }
+
 }
