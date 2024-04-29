@@ -3,7 +3,7 @@ import { ProductService } from 'src/api/services/products';
 
 export class ProductsController {
 
-  async listAllProducts(req: Request, res: Response) {
+  async listAllProducts(req: Request, res: Response): Promise<Response> {
     try {
       const products = new ProductService();
       const allProducts = await products.listAllProducts();
@@ -12,4 +12,16 @@ export class ProductsController {
       return res.status(500).json({ message: 'Internal server error' });
     }
   }
+
+  async findByName(req: Request, res: Response): Promise<Response> {
+    const { name } = req.params;
+    try {
+      const products = new ProductService();
+      const productName = await products.findByName(name);
+      return res.status(200).json(productName);
+    } catch (error) {
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+  }
+
 }
