@@ -20,7 +20,7 @@ export class ProductService {
     return await Products.create({ name, description, image });
   }
 
-  async productById(id: number): Promise<Products | undefined> {
+  async productById(id: number): Promise<Products> {
     const product = await Products.findByPk(id);
     if (!product) {
       throw new Error('Product not found');
@@ -29,8 +29,8 @@ export class ProductService {
     return product;
   }
 
-  async updateProduct({ id, name, description, image}: productType): Promise<Products> {
-    const productId = await this.productById(id);
+  async updateProduct({ id, name, description, image}: productType): Promise<number | Products> {
+    const productId = await this.productById(Number(id));
 
     const productExists = await this.findByName(name);
     if (productExists && productExists.name !== name) {
@@ -40,8 +40,8 @@ export class ProductService {
     return await productId!.update({ name, description, image });
   }
 
-  async deleteProduct({ id }: productType): Promise<void> {
-    const productId = await this.productById(id);
+  async deleteProduct(id: number): Promise<void> {
+    const productId = await this.productById(Number(id));
     await productId?.destroy();
   }
 }
