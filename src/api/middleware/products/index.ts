@@ -1,6 +1,6 @@
 import { celebrate, Joi, Segments } from 'celebrate';
 
-export function validateGetId() {
+export function validateIdParams() {
   return celebrate({
     [Segments.PARAMS]: {
       id: Joi.number().required()
@@ -18,7 +18,6 @@ export function validateCreate() {
   })
 }
 
-
 export function validateUpdate() {
   return celebrate({
     [Segments.BODY]: {
@@ -27,15 +26,6 @@ export function validateUpdate() {
       description: Joi.string().required(),
       image: Joi.string().required()
     },
-    [Segments.PARAMS]: {
-      id: Joi.number().required()
-    }
-  })
-}
-
-
-export function validateDelete() {
-  return celebrate({
     [Segments.PARAMS]: {
       id: Joi.number().required()
     }
