@@ -1,4 +1,4 @@
-import { productType } from 'src/api/types/products';
+import { ProductType } from 'src/api/types/products';
 import Products from 'src/database/models/products';
 
 export class ProductService {
@@ -11,7 +11,7 @@ export class ProductService {
     return await Products.findOne({ where: { name } });
   }
 
-  async createProduct({ name, description, image }: productType): Promise<Products> {
+  async createProduct({ name, description, image }: ProductType): Promise<Products> {
     const productsExists = await this.findByName(name);
     if (productsExists) {
       throw new Error('Product already exists');
@@ -29,7 +29,7 @@ export class ProductService {
     return product;
   }
 
-  async updateProduct({ id, name, description, image}: productType): Promise<number | Products> {
+  async updateProduct({ id, name, description, image}: ProductType): Promise<number | Products> {
     const productId = await this.productById(Number(id));
 
     const productExists = await this.findByName(name);
