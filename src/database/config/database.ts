@@ -7,7 +7,7 @@ const config: Options = {
   username: PG_USER || 'root',
   password: PG_PASSWORD || 'docker',
   database: PG_DATABASE || 'water-delivery',
-  host: PG_HOST || 'db',
+  host: PG_HOST || 'localhost',
   port: Number(PG_PORT),
   dialect: 'postgres',
   dialectOptions: {
