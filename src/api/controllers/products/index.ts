@@ -35,6 +35,7 @@ export class ProductsController {
       return res.status(500).json({ message: 'Internal server error' });
     }
   }
+
   async productById(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
 
@@ -42,6 +43,28 @@ export class ProductsController {
       const products = new ProductService();
       const productId = await products.productById(Number(id));
       return res.status(200).json(productId);
+    } catch (error) {
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+  }
+
+  async updateProduct(req: Request, res: Response): Promise<Response> {
+    const { name, description, image } = req.body;
+    try {
+      const products = new ProductService();
+      const updateProduct = await products.updateProduct({ name, description, image});
+      return res.status(200).json(updateProduct);
+    } catch(error) {
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+  }
+
+  async deleteProduct(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+    try {
+      const products = new ProductService();
+      const productId = await products.deleteProduct(Number(id));
+      return res.status(204).json(productId);
     } catch (error) {
       return res.status(500).json({ message: 'Internal server error' });
     }
