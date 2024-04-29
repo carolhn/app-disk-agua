@@ -35,5 +35,15 @@ export class ProductsController {
       return res.status(500).json({ message: 'Internal server error' });
     }
   }
+  async productById(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
 
+    try {
+      const products = new ProductService();
+      const productId = await products.productById(Number(id));
+      return res.status(200).json(productId);
+    } catch (error) {
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+  }
 }
