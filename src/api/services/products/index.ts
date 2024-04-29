@@ -30,12 +30,12 @@ export class ProductService {
   }
 
   async updateProduct({ id, name, description, image}: ProductType): Promise<number | Products> {
-    const productId = await this.productById(Number(id));
-
     const productExists = await this.findByName(name);
     if (productExists && productExists.name !== name) {
       throw new Error('Product already exists');
     }
+
+    const productId = await this.productById(Number(id));
 
     return await productId!.update({ name, description, image });
   }

@@ -15,6 +15,7 @@ export class ProductsController {
 
   async findByName(req: Request, res: Response): Promise<Response> {
     const { name } = req.params;
+
     try {
       const products = new ProductService();
       const productName = await products.findByName(name);
@@ -29,10 +30,14 @@ export class ProductsController {
 
     try {
       const products = new ProductService();
-      const createProduct = await products.createProduct({ name, description, image });
+      const createProduct = await products.createProduct({
+        name,
+        description,
+        image,
+      });
       return res.status(201).json(createProduct);
-    } catch (error) {
-      return res.status(500).json({ message: 'Internal server error' });
+    } catch (error: any) {
+      return res.status(500).json({ message: error.message });
     }
   }
 
@@ -50,9 +55,11 @@ export class ProductsController {
 
   async updateProduct(req: Request, res: Response): Promise<Response> {
     const { name, description, image } = req.body;
+    const id = Number(req.params.id);
+
     try {
       const products = new ProductService();
-      const updateProduct = await products.updateProduct({ name, description, image});
+      const updateProduct = await products.updateProduct({ id, name, description, image });
       return res.status(200).json(updateProduct);
     } catch(error) {
       return res.status(500).json({ message: 'Internal server error' });
@@ -61,12 +68,13 @@ export class ProductsController {
 
   async deleteProduct(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
+
     try {
       const products = new ProductService();
       await products.deleteProduct(Number(id));
       return res.status(204).json([]);
-    } catch (error) {
-      return res.status(500).json({ message: 'Internal server error' });
+    } catch (error: any) {
+      return res.status(500).json({ message: error.message });
     }
   }
 }
