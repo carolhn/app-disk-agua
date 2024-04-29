@@ -17,6 +17,10 @@ export class ProductService {
       throw new Error('Product already exists');
     }
 
+    if (!name || !description || !image) {
+      throw new Error('All fields are required');
+    }
+
     return await Products.create({ name, description, image });
   }
 
@@ -31,17 +35,24 @@ export class ProductService {
 
   async updateProduct({ id, name, description, image}: ProductType): Promise<number | Products> {
     const productExists = await this.findByName(name);
-    if (productExists && productExists.name !== name) {
+    if (productExists && productExists.id !== id) {
       throw new Error('Product already exists');
     }
 
     const productId = await this.productById(Number(id));
+    if (!productId) {
+      throw new Error('Product already exists');
+    }
 
     return await productId!.update({ name, description, image });
   }
 
   async deleteProduct(id: number): Promise<void> {
     const productId = await this.productById(Number(id));
+    if (!productId) {
+      throw new Error('Product not found');
+    }
+
     await productId?.destroy();
   }
 }
