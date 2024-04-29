@@ -63,8 +63,8 @@ export class ProductsController {
     const { id } = req.params;
     try {
       const products = new ProductService();
-      const productId = await products.deleteProduct(Number(id));
-      return res.status(204).json(productId);
+      await products.deleteProduct(Number(id));
+      return res.status(204).json([]);
     } catch (error) {
       return res.status(500).json({ message: 'Internal server error' });
     }
