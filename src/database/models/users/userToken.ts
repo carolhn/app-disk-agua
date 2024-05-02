@@ -31,3 +31,4 @@ UserToken.init(
     timestamps: false,
   }
 )
+export default UserToken;
