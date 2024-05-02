@@ -6,6 +6,9 @@ class Users extends Model {
   declare name: String;
   declare email: String;
   declare password: String;
+  declare avatar: String;
+  declare createdAt: Date;
+  declare updatedAt: Date;
 }
 
 Users.init(
@@ -26,6 +29,18 @@ Users.init(
     },
     password: {
       type: sequelize.STRING(128),
+      allowNull: false,
+    },
+    avatar: {
+      type: sequelize.STRING(128),
+      allowNull: true,
+    },
+    createdAt: {
+      type: sequelize.DATE,
+      allowNull: false,
+    },
+    updatedAt: {
+      type: sequelize.DATE,
       allowNull: false,
     },
   },
