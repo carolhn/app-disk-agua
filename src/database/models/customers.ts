@@ -2,12 +2,12 @@ import sequelize, { Model } from 'sequelize'
 import db from '.'
 
 class Customers extends Model {
-  declare id: Number
-  declare name: String
-  declare phone: String
-  declare typyDocument: String
-  declare cpfCnpj: String
-  declare address: String
+  declare id: number
+  declare name: string
+  declare phone: string
+  declare typyDocument: string
+  declare cpfCnpj: string
+  declare address: string
 }
 
 Customers.init(
