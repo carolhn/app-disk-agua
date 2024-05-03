@@ -2,10 +2,10 @@ import sequelize, { Model } from 'sequelize'
 import db from '.'
 
 class Products extends Model {
-  declare id: Number
-  declare name: String
-  declare description: String
-  declare image: String
+  declare id: number
+  declare name: string
+  declare description: string
+  declare image: string
 }
 
 Products.init(

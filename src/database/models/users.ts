@@ -2,10 +2,11 @@ import sequelize, { Model } from 'sequelize';
 import db from '.';
 
 class Users extends Model {
-  declare id: Number;
-  declare name: String;
-  declare email: String;
-  declare password: String;
+  declare id: number;
+  declare name: string;
+  declare email: string;
+  declare password: string;
+  declare avatar: string;
 }
 
 Users.init(
@@ -27,6 +28,10 @@ Users.init(
     password: {
       type: sequelize.STRING(128),
       allowNull: false,
+    },
+    avatar: {
+      type: sequelize.STRING(128),
+      allowNull: true,
     },
   },
   {
