@@ -10,3 +10,12 @@ export function validateCreate() {
     }
   })
 }
+
+export function validateAuth() {
+  return celebrate({
+    [Segments.BODY]: {
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+    }
+  })
+}
