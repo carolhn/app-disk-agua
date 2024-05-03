@@ -25,7 +25,7 @@ module.exports = {
       avatar: {
         type: Sequelize.STRING,
         allowNull: true
-      }
+      },
     })
   },
 
