@@ -1,3 +1,4 @@
+import { hash } from 'bcryptjs';
 import { UserType } from 'src/api/types/users';
 import UsersModel from 'src/database/models/users';
 import { AppError } from 'src/utils/errors';
@@ -22,6 +23,7 @@ export class UsersService {
       throw AppError('Email address already used');
     }
 
-    return await UsersModel.create({ name, email, password, avatar });
+    const hasPassword = await hash(password, 8);
+    return await UsersModel.create({ name, email, password: hasPassword, avatar });
   }
 }
