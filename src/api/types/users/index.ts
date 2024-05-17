@@ -14,4 +14,5 @@ export type RequestType = {
 
 export type ResponseType = {
   user: UsersModel;
+  token: string;
 };
