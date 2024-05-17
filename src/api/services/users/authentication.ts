@@ -2,6 +2,7 @@
 import { compare } from 'bcryptjs';
 import { UsersService } from 'src/api/services/users';
 import { RequestType, ResponseType } from 'src/api/types/users';
+import { generateToken } from 'src/utils/authentication/token';
 import { AppError } from 'src/utils/errors';
 
 export class AuthenticationService {
@@ -20,6 +21,11 @@ export class AuthenticationService {
       throw AppError('Incorrect email/password combination --- erro aqui', 401);
     }
 
-    return { user: usersData };
+    const token = generateToken({ id: usersData.id });
+
+    return {
+      user: usersData,
+      token,
+    };
   }
 }
