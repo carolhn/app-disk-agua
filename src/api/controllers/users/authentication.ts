@@ -1,15 +1,15 @@
-
 import { AuthenticationService } from '@services/users/authentication';
 import { Request, Response } from 'express';
 
 export class AuthenticationController {
 
-  async authenticationUser(req: Request, res: Response): Promise<Response> {
+  async createAuthentication(req: Request, res: Response): Promise<Response> {
     const { email, password } = req.body;
 
     try {
-      const authenticationService  = new AuthenticationService();
-      const authenticatedUser = await authenticationService.authenticationUser({ email, password });
+      const authentication  = new AuthenticationService();
+      const authenticatedUser = await authentication.createAuthentication({ email, password });
+
       return res.status(200).json(authenticatedUser);
     } catch (error: any) {
       if (error.statusCode) {
