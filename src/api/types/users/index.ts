@@ -1,3 +1,5 @@
+import UsersModel from 'src/database/models/users';
+
 export type UserType = {
   name: string;
   email: string;
@@ -5,7 +7,11 @@ export type UserType = {
   avatar: string;
 };
 
-export type AuthUser = {
+export type RequestType = {
   email: string;
   password: string;
+};
+
+export type ResponseType = {
+  user: UsersModel;
 };
