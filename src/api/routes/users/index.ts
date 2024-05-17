@@ -6,7 +6,7 @@ import { validateCreate } from 'src/api/middleware/users';
 const usersRouter = Router();
 const usersController = new UsersController();
 
-usersRouter.get('/', usersController.findUsers);
+usersRouter.get('/', usersController.findAll);
 
 usersRouter.post('/', validateCreate(), usersController.createUser)
 
