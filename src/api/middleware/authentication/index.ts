@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
-import { TokenPayloadType } from "src/api/types/users/auth";
+import { TokenPayloadType } from "src/api/types/users";
 import { TOKEN_SECRET } from "src/utils/authentication/token";
 import { AppError } from "src/utils/errors";
 
