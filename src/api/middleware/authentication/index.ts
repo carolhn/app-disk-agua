@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
+import { TokenPayloadType } from "src/api/types/users/auth";
 import { TOKEN_SECRET } from "src/utils/authentication/token";
 import { AppError } from "src/utils/errors";
 
@@ -15,7 +16,11 @@ export function isAuthenticated(req: Request, res: Response, next: NextFunction)
   try {
     const decodedToken = verify(token, TOKEN_SECRET);
 
-    console.log('--------', decodedToken);
+    const { sub } = decodedToken as TokenPayloadType;
+
+    req.user = {
+      id: sub,
+    };
 
     return next();
   } catch (error) {
