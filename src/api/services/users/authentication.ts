@@ -18,7 +18,7 @@ export class AuthenticationService {
     const passwordConfirmed = await compare(password, usersData.password);
 
     if (!passwordConfirmed) {
-      throw AppError('Incorrect email/password combination --- erro aqui', 401);
+      throw AppError('Incorrect email/password combination', 401);
     }
 
     const token = generateToken({ id: usersData.id });
