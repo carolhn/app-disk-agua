@@ -6,7 +6,7 @@ export class ProductsController {
   async listAllProducts(req: Request, res: Response): Promise<Response> {
     try {
       const products = new ProductService();
-      const allProducts = await products.listAllProducts();
+      const allProducts = await products.findAll();
       return res.status(200).json(allProducts);
     } catch (error) {
       return res.status(500).json({ message: 'Internal server error' });
@@ -55,11 +55,16 @@ export class ProductsController {
 
   async updateProduct(req: Request, res: Response): Promise<Response> {
     const { name, description, image } = req.body;
-    const id = Number(req.params.id);
+    const { id } = req.params;
+
+    const idNumber = Number(id);
+    if (isNaN(idNumber)) {
+      return res.status(400).json({ message: 'Invalid product ID' });
+    }
 
     try {
       const products = new ProductService();
-      const updateProduct = await products.updateProduct({ id, name, description, image });
+      const updateProduct = await products.updateProduct({ id: idNumber, name, description, image });
       return res.status(200).json(updateProduct);
     } catch(error) {
       return res.status(500).json({ message: 'Internal server error' });

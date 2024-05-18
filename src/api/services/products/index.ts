@@ -4,12 +4,21 @@ import { AppError } from 'src/utils/errors';
 
 export class ProductService {
 
-  async listAllProducts(): Promise<Products[]> {
+  async findAll(): Promise<Products[]> {
     return await Products.findAll();
   }
 
   async findByName(name: string): Promise<Products | null> {
     return await Products.findOne({ where: { name } });
+  }
+
+  async productById(id: number): Promise<Products> {
+    const product = await Products.findByPk(id);
+    if (!product) {
+      throw AppError('Product not found');
+    }
+
+    return product;
   }
 
   async createProduct({ name, description, image }: ProductType): Promise<Products> {
@@ -25,31 +34,17 @@ export class ProductService {
     return await Products.create({ name, description, image });
   }
 
-  async productById(id: number): Promise<Products> {
-    const product = await Products.findByPk(id);
-    if (!product) {
-      throw AppError('Product not found');
-    }
-
-    return product;
-  }
-
-  async updateProduct({ id, name, description, image}: ProductType): Promise<number | Products> {
+  async updateProduct({ id, name, description, image}: ProductType): Promise<Products> {
     const productExists = await this.findByName(name);
     if (productExists && productExists.id !== id) {
       throw AppError('Product already exists');
     }
 
-    const productId = await this.productById(Number(id));
-    if (!productId) {
-      throw AppError('Product already exists');
-    }
-
-    return await productId!.update({ name, description, image });
+    return await productExists!.update({ name, description, image });
   }
 
   async deleteProduct(id: number): Promise<void> {
-    const productId = await this.productById(Number(id));
+    const productId = await this.productById(id);
     if (!productId) {
       throw AppError('Product not found');
     }

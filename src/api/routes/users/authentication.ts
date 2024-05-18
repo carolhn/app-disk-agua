@@ -2,9 +2,9 @@ import { AuthenticationController } from '@controllers/users/authentication';
 import { Router } from 'express';
 import { validateAuth } from 'src/api/middleware/users';
 
-const userAuthRouter = Router();
-const usersController = new AuthenticationController();
+const authenticationRouter = Router();
+const authentication = new AuthenticationController();
 
-userAuthRouter.post('/', validateAuth(), usersController.authenticationUser)
+authenticationRouter.post('/', validateAuth(), authentication.createAuthentication)
 
-export default userAuthRouter;
+export default authenticationRouter;
