@@ -16,3 +16,14 @@ export type ResponseType = {
   user: UsersModel;
   token: string;
 };
+
+export type TokenPayloadType = {
+  iat: number;
+  exp: number;
+  sub: string;
+}
+
+export type RequestAvatarType = {
+  avatarFileName: string;
+  userId: string;
+}
