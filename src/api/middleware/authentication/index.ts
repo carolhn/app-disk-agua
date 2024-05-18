@@ -13,7 +13,9 @@ export function isAuthenticated(req: Request, res: Response, next: NextFunction)
   const [, token] = authHeader.split(' ');
 
   try {
-    const decodeToken = verify(token, TOKEN_SECRET);
+    const decodedToken = verify(token, TOKEN_SECRET);
+
+    console.log('--------', decodedToken);
 
     return next();
   } catch (error) {

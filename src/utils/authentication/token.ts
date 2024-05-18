@@ -5,7 +5,7 @@ type payloadType = {
   id: number;
 }
 
-const TOKEN_SECRET = '97382689029b92c526a5a1fb0ed7e7f3';
+export const TOKEN_SECRET = '97382689029b92c526a5a1fb0ed7e7f3';
 
 const configToken: SignOptions = {
   expiresIn: '1d',
