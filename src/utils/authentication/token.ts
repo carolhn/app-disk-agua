@@ -14,7 +14,10 @@ const configToken: SignOptions = {
 
 export function generateToken(payload: payloadType): string {
   try {
-    const token = sign(payload, TOKEN_SECRET, configToken);
+    const token = sign(payload, TOKEN_SECRET, {
+      ...configToken,
+      subject: payload.id.toString(),
+    });
     return token;
   } catch (error) {
     throw AppError('Error during token generation', 500);
