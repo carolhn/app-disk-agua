@@ -24,4 +24,23 @@ export class UsersController {
       return res.status(500).json({ message: 'Internal server error' });
     }
   }
+
+  async updateUserAvatar(req: Request, res: Response): Promise<Response> {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ message: 'File is required' });
+      }
+
+      const usersAvatar = new UsersService();
+
+      const updatedUserAvatar = await usersAvatar.updateUserAvatar({
+        userId: req.user.id,
+        avatarFileName: req.file.filename,
+       });
+
+      return res.status(200).json(updatedUserAvatar);
+    } catch (error) {
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+  }
 }
