@@ -1,7 +1,10 @@
 import { hash } from 'bcryptjs';
-import { UserType } from 'src/api/types/users';
+import fs, { existsSync } from 'fs';
+import path from 'path';
+import { RequestAvatarType, UserType } from 'src/api/types/users';
 import UsersModel from 'src/database/models/users';
 import { AppError } from 'src/utils/errors';
+import uploadFolder from 'src/utils/multer';
 
 export class UsersService {
 
@@ -31,5 +34,24 @@ export class UsersService {
     } catch (error) {
       throw AppError('Error creating user', 500);
     }
+  }
+
+  async updateUserAvatar({ avatarFileName, userId}: RequestAvatarType): Promise<UsersModel> {
+    const user = await UsersModel.findByPk(userId);
+    if (!user) {
+      throw AppError('User not found', 404);
+    }
+
+    if(user.avatar) {
+      const userAvatar = path.join(uploadFolder.directory, user.avatar);
+      const userAvatarExists = existsSync(userAvatar);
+
+      if (userAvatarExists) {
+        await fs.promises.unlink(userAvatar);
+      }
+    }
+
+    user.avatar = avatarFileName;
+    return await user.save();
   }
 }
